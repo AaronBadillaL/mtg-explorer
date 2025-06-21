@@ -1,0 +1,268 @@
+.card-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.card-image:hover {
+  transform: scale(1.05);
+}
+
+.card-name {
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.carousel-loading {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .card-carousel {
+    max-width: 300px;
+  }
+
+  .card-image {
+    max-width: 250px;
+  }
+
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-carousel {
+    max-width: 250px;
+  }
+
+  .card-image {
+    max-width: 200px;
+  }
+
+  .card-name {
+    font-size: 1rem;
+  }
+}
+
+.random-cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card-wrapper:hover {
+  transform: translateY(-10px);
+}
+
+.card-image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.card-name {
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-loading {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 1024px) {
+  .random-cards-container {
+    gap: 1.5rem;
+  }
+
+  .card-image {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .random-cards-container {
+    gap: 1rem;
+  }
+
+  .card-image {
+    max-width: 200px;
+  }
+
+  .card-name {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .random-cards-container {
+    gap: 1.5rem;
+  }
+
+  .card-image {
+    max-width: 180px;
+  }
+
+  .card-name {
+    font-size: 1rem;
+  }
+}
+
+.background-carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 2rem;
+  animation: scroll 60s linear infinite;
+  padding: 2rem 0;
+  width: max-content;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.card-wrapper {
+  flex: 0 0 auto;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.card-wrapper:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.card-image {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0) translateY(-50%);
+  }
+  100% {
+    transform: translateX(calc(-200px * 10)) translateY(-50%);
+  }
+}
+
+.carousel-loading {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 1024px) {
+  .card-image {
+    width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-image {
+    width: 150px;
+  }
+  
+  .carousel-track {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-image {
+    width: 120px;
+  }
+  
+  .carousel-track {
+    gap: 1rem;
+  }
+} 
