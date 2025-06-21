@@ -14,6 +14,13 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-content">
         <h1>MTG Explorer</h1>
+        <nav className={isMenuOpen ? 'active' : ''}>
+          <ul>
+            <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
+            <li><a href="/cards" onClick={() => setIsMenuOpen(false)}>Cards</a></li>
+            <li><a href="/decks" onClick={() => setIsMenuOpen(false)}>Decks</a></li>
+          </ul>
+        </nav>
         <div className="header-actions">
           <button 
             className="theme-toggle"
@@ -28,13 +35,6 @@ const Header: React.FC = () => {
             <span></span>
           </div>
         </div>
-        <nav className={isMenuOpen ? 'active' : ''}>
-          <ul>
-            <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-            <li><a href="/cards" onClick={() => setIsMenuOpen(false)}>Cards</a></li>
-            <li><a href="/decks" onClick={() => setIsMenuOpen(false)}>Decks</a></li>
-          </ul>
-        </nav>
       </div>
     </header>
   );

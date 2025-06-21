@@ -250,6 +250,7 @@ const Decks: React.FC = () => {
   const [sideboardCards, setSideboardCards] = useState<Card[]>([]);
   const [isLoadingCards, setIsLoadingCards] = useState(false);
   const [mainCardImages, setMainCardImages] = useState<Record<string, string>>({});
+  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const fetchMainCardImages = async () => {
@@ -350,6 +351,19 @@ const Decks: React.FC = () => {
     return groups;
   };
 
+  // Función para alternar el estado de colapso de una sección
+  const toggleSection = (sectionName: string) => {
+    setCollapsedSections(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(sectionName)) {
+        newSet.delete(sectionName);
+      } else {
+        newSet.add(sectionName);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <div className="decks-container">
       <div className="decks-header">
@@ -436,36 +450,56 @@ const Decks: React.FC = () => {
                   {/* Cartas principales agrupadas por tipo */}
                   {Object.entries(groupCardsByType(deckCards)).map(([type, cards]) => (
                     <div key={type} className="card-type-section">
-                      <h3 className="card-type-title">{type}</h3>
-                      <div className="modal-cards-grid">
-                        {cards.map(card => (
-                          <div key={card.id} className="modal-card-item">
-                            <img 
-                              src={card.image_uris?.normal || card.card_faces?.[0]?.image_uris?.normal} 
-                              alt={card.name}
-                              className="modal-card-image"
-                            />
-                          </div>
-                        ))}
-                      </div>
+                      <h3 
+                        className="card-type-title"
+                        onClick={() => toggleSection(type)}
+                      >
+                        {type} ({cards.length})
+                        <span className="collapse-icon">
+                          {collapsedSections.has(type) ? '▼' : '▲'}
+                        </span>
+                      </h3>
+                      {!collapsedSections.has(type) && (
+                        <div className="modal-cards-grid">
+                          {cards.map(card => (
+                            <div key={card.id} className="modal-card-item">
+                              <img 
+                                src={card.image_uris?.normal || card.card_faces?.[0]?.image_uris?.normal} 
+                                alt={card.name}
+                                className="modal-card-image"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                   
                   {/* Sideboard */}
                   {sideboardCards.length > 0 && (
                     <div className="card-type-section sideboard-section">
-                      <h3 className="card-type-title">Sideboard</h3>
-                      <div className="modal-cards-grid">
-                        {sideboardCards.map(card => (
-                          <div key={card.id} className="modal-card-item">
-                            <img 
-                              src={card.image_uris?.normal || card.card_faces?.[0]?.image_uris?.normal} 
-                              alt={card.name}
-                              className="modal-card-image"
-                            />
-                          </div>
-                        ))}
-                      </div>
+                      <h3 
+                        className="card-type-title"
+                        onClick={() => toggleSection('Sideboard')}
+                      >
+                        Sideboard ({sideboardCards.length})
+                        <span className="collapse-icon">
+                          {collapsedSections.has('Sideboard') ? '▼' : '▲'}
+                        </span>
+                      </h3>
+                      {!collapsedSections.has('Sideboard') && (
+                        <div className="modal-cards-grid">
+                          {sideboardCards.map(card => (
+                            <div key={card.id} className="modal-card-item">
+                              <img 
+                                src={card.image_uris?.normal || card.card_faces?.[0]?.image_uris?.normal} 
+                                alt={card.name}
+                                className="modal-card-image"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </>

@@ -266,7 +266,7 @@
   }
   
   .deck-details {
-    max-height: none;
+    max-height: 70vh;
   }
 }
 
@@ -280,39 +280,196 @@
   }
   
   .format-selector {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
   }
   
   .format-btn {
-    width: 200px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    min-width: 80px;
   }
   
   .deck-details {
-    padding: 1.5rem;
+    padding: 1rem;
+    max-height: 60vh;
   }
   
   .cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
   }
   
   .deck-meta {
     flex-direction: column;
     gap: 0.5rem;
   }
+  
+  .deck-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  
+  .deck-display-card {
+    height: 200px;
+  }
+  
+  .deck-modal {
+    width: 95%;
+    max-width: none;
+    margin: 1rem;
+    max-height: 90vh;
+  }
+  
+  .deck-modal-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .modal-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .modal-card-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-type-title {
+    font-size: 1.2rem;
+    padding: 0.4rem 0;
+  }
+  
+  .collapse-icon {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .decks-container {
+    padding: 0.5rem;
+  }
+  
+  .decks-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .decks-subtitle {
+    font-size: 0.9rem;
+  }
+  
   .format-selector {
     flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
   }
   
   .format-btn {
     width: 100%;
+    max-width: 200px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
   }
   
-  .cards-grid {
+  .deck-grid-container {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .deck-display-card {
+    height: 180px;
+  }
+  
+  .deck-card-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .deck-card-format {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .deck-modal {
+    width: 98%;
+    margin: 0.5rem;
+    max-height: 95vh;
+    padding: 1rem;
+  }
+  
+  .deck-modal-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .deck-modal-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .deck-modal-description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .modal-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.3rem;
+  }
+  
+  .card-type-title {
+    font-size: 1.1rem;
+    padding: 0.3rem 0;
+  }
+  
+  .collapse-icon {
+    font-size: 0.6rem;
+  }
+  
+  .close-modal-btn {
+    font-size: 1.5rem;
+    padding: 0.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .decks-container {
+    padding: 0.25rem;
+  }
+  
+  .decks-header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .format-btn {
+    max-width: 150px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .deck-display-card {
+    height: 160px;
+  }
+  
+  .deck-card-header h3 {
+    font-size: 1rem;
+  }
+  
+  .modal-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  }
+  
+  .deck-modal {
+    padding: 0.75rem;
+  }
+  
+  .card-type-title {
+    font-size: 1rem;
+    padding: 0.25rem 0;
+  }
+  
+  .collapse-icon {
+    font-size: 0.5rem;
   }
 }
 
@@ -487,27 +644,50 @@
 
 /* Estilos para secciones de tipos de cartas */
 .card-type-section {
- margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .card-type-title {
- color: var(--text-color);
- font-size: 1.4rem;
- margin-bottom: 1rem;
- padding-bottom: 0.5rem;
- border-bottom: 2px solid var(--border-color);
- font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid var(--border-color);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.card-type-title:hover {
+  color: #ffd700;
+  border-bottom-color: #ffd700;
+}
+
+.collapse-icon {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.card-type-title:hover .collapse-icon {
+  opacity: 1;
+  color: #ffd700;
 }
 
 .sideboard-section {
- margin-top: 2rem;
- padding-top: 1rem;
- border-top: 3px solid #ffd700;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border-color);
 }
 
 .sideboard-section .card-type-title {
- color: #ffd700;
- border-bottom-color: #ffd700;
+  color: #ffd700;
+  border-bottom-color: #ffd700;
 }
 
 /* Scrollbar para el modal */
