@@ -1,0 +1,568 @@
+.decks-container {
+  padding: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.decks-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.decks-header h1 {
+  color: var(--text-color);
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+}
+
+.decks-subtitle {
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Selector de formato */
+.format-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.format-btn {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.format-btn:hover {
+  border-color: #ffd700;
+  transform: translateY(-2px);
+}
+
+.format-btn.active {
+  background-color: #ffd700;
+  color: #1a1a1a;
+  border-color: #ffd700;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Contenido principal */
+.decks-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Lista de mazos */
+.decks-list h2 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.decks-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.deck-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.deck-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.deck-card.selected {
+  border-color: #ffd700;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.deck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.deck-header h3 {
+  color: var(--text-color);
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.meta-badge {
+  background-color: #ffd700;
+  color: #1a1a1a;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.deck-description {
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.deck-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.deck-owner {
+  font-weight: 500;
+}
+
+/* Detalles del mazo */
+.deck-details {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.deck-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.deck-details-header h2 {
+  color: var(--text-color);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+}
+
+.deck-format {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.deck-details-header button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.deck-details-header button:hover {
+  background-color: var(--hover-color);
+}
+
+.deck-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.deck-meta span {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.meta-indicator {
+  background-color: #ffd700;
+  color: #1a1a1a;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Cartas del mazo */
+.deck-cards h3 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.deck-card-item {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.deck-card-item:hover {
+  transform: translateY(-2px);
+}
+
+.card-image {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.card-info {
+  text-align: center;
+  width: 100%;
+}
+
+.card-info strong {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.card-info span {
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .decks-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .deck-details {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .decks-container {
+    padding: 1rem;
+  }
+  
+  .decks-header h1 {
+    font-size: 2rem;
+  }
+  
+  .format-selector {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .format-btn {
+    width: 200px;
+  }
+  
+  .deck-details {
+    padding: 1.5rem;
+  }
+  
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .deck-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .format-selector {
+    flex-direction: column;
+  }
+  
+  .format-btn {
+    width: 100%;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contenedor de mazos con ajuste automático */
+.deck-grid-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los mazos pasen a la siguiente fila */
+  gap: 1.5rem;
+  padding: 1rem 0;
+  justify-content: center; /* Centramos las cartas en el contenedor */
+}
+
+.deck-display-card {
+  width: 260px; /* Ancho fijo para cada carta de mazo */
+  height: 360px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deck-display-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.deck-card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease;
+}
+
+.deck-display-card:hover .deck-card-background {
+  transform: scale(1.1);
+}
+
+.deck-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.deck-card-header h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.deck-card-format {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(255, 215, 0, 0.9);
+  color: #1a1a1a;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.deck-card-footer {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+/* --- MODAL DE DETALLES DEL MAZO --- */
+
+.deck-modal-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background: rgba(0,0,0,0.7);
+ z-index: 1000;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ animation: fadeIn 0.3s;
+}
+
+.deck-modal {
+ background: var(--card-bg);
+ border-radius: 16px;
+ box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+ padding: 2rem;
+ width: 90vw;
+ max-width: 1200px;
+ height: 90vh;
+ display: flex;
+ flex-direction: column;
+}
+
+.deck-modal-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 1rem;
+}
+
+.deck-modal-header h2 {
+ color: var(--text-color);
+ margin: 0;
+ font-size: 2rem;
+}
+
+.close-modal-btn {
+ background: transparent;
+ border: none;
+ font-size: 2.2rem;
+ color: var(--text-color);
+ cursor: pointer;
+ transition: color 0.2s;
+}
+
+.close-modal-btn:hover {
+ color: #ffd700;
+}
+
+.deck-modal-description {
+ color: var(--text-color);
+ opacity: 0.8;
+ margin-bottom: 1.5rem;
+}
+
+.deck-modal-cards {
+ flex: 1;
+ overflow-y: auto;
+ padding-right: 1rem; /* Espacio para la barra de desplazamiento */
+}
+
+.modal-cards-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+ gap: 1.5rem;
+}
+
+.modal-card-item {
+ border-radius: 10px;
+ overflow: hidden;
+ transition: transform 0.3s;
+}
+
+.modal-card-item:hover {
+ transform: scale(1.05);
+}
+
+.modal-card-image {
+ width: 100%;
+ display: block;
+}
+
+/* Estilos para secciones de tipos de cartas */
+.card-type-section {
+ margin-bottom: 2rem;
+}
+
+.card-type-title {
+ color: var(--text-color);
+ font-size: 1.4rem;
+ margin-bottom: 1rem;
+ padding-bottom: 0.5rem;
+ border-bottom: 2px solid var(--border-color);
+ font-weight: 600;
+}
+
+.sideboard-section {
+ margin-top: 2rem;
+ padding-top: 1rem;
+ border-top: 3px solid #ffd700;
+}
+
+.sideboard-section .card-type-title {
+ color: #ffd700;
+ border-bottom-color: #ffd700;
+}
+
+/* Scrollbar para el modal */
+.deck-modal-cards::-webkit-scrollbar {
+ width: 8px;
+}
+.deck-modal-cards::-webkit-scrollbar-track {
+ background: var(--background-color);
+ border-radius: 4px;
+}
+.deck-modal-cards::-webkit-scrollbar-thumb {
+ background: var(--border-color);
+ border-radius: 4px;
+}
+.deck-modal-cards::-webkit-scrollbar-thumb:hover {
+ background: #ffd700;
+}
+
+@keyframes fadeIn {
+ from { opacity: 0; }
+ to { opacity: 1; }
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 768px) {
+ .deck-display-card {
+   height: 320px;
+   width: 220px;
+ }
+ .deck-modal {
+   padding: 1.5rem;
+ }
+}
+
+@media (max-width: 480px) {
+ .decks-container {
+   padding: 1rem;
+ }
+ .deck-grid-container {
+   justify-content: center;
+ }
+ .deck-display-card {
+   /* Hacemos que casi ocupe todo el ancho en móviles */
+   width: calc(100vw - 4rem);
+   height: auto;
+   aspect-ratio: 260 / 360;
+ }
+ .deck-modal {
+   width: 95vw;
+   height: 95vh;
+   padding: 1rem;
+ }
+ .modal-cards-grid {
+   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+   gap: 1rem;
+ }
+} 
