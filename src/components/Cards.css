@@ -1,9 +1,16 @@
+/* Prevenir scroll horizontal en toda la aplicación */
+* {
+  box-sizing: border-box;
+}
+
 .cards-container {
   padding: 2rem;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   margin-top: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .cards-container h1 {
@@ -199,7 +206,7 @@
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  min-width: 900px;
+  overflow-x: hidden;
 }
 
 .form-group select {
@@ -264,28 +271,141 @@
   gap: 0.5rem;
 }
 
-@media (max-width: 900px) {
+/* Configuración principal del grid de cartas */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+  justify-content: center;
+  justify-items: center;
+}
+
+/* Configuración principal de las cartas */
+.card-result {
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.4s, transform 0.3s, box-shadow 0.3s;
+  min-width: 0;
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card-result:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 16px var(--shadow-color);
+}
+
+.card-result img {
+  width: 100%;
+  max-width: 180px;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.card-result strong {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+  .card-result div {
+    text-align: center;
+    word-break: break-word;
+  }
+
+/* FORZAR 1 CARTA POR FILA EN DISPOSITIVOS MÓVILES */
+@media (max-width: 768px) and (orientation: portrait) {
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+  }
+}
+
+/* FORZAR 1 CARTA POR FILA EN PANTALLAS PEQUEÑAS */
+@media only screen and (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+    width: 100% !important;
+  }
+  
+  .card-result {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ASEGURAR UNA SOLA CARTA EN DISPOSITIVOS MÓVILES (OVERRIDE) */
+@media (max-width: 767px) {
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    display: grid !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .card-result {
+    width: 100% !important;
+    max-width: calc(100% - 1rem) !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* REGLA FINAL: SOLO UNA CARTA POR FILA EN MÓVILES */
+@media screen and (max-width: 767px) {
+  .cards-container .cards-results .cards-grid {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+  }
+  
+  .cards-container .cards-results .cards-grid .card-result {
+    width: 100% !important;
+    max-width: calc(100% - 1rem) !important;
+  }
+}
+
+/* Tablets y laptops medianos - 3 cartas por fila */
+@media (min-width: 768px) and (max-width: 1024px) {
   .cards-container, .cards-results {
     max-width: 100%;
     padding: 1rem;
+    overflow-x: hidden;
   }
 
   .cards-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    min-width: unset;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.2rem;
+    padding: 1.2rem 1rem;
+    box-sizing: border-box;
   }
 
   .card-result {
     min-height: 280px;
+    max-width: 200px;
   }
 
   .cards-results {
     padding: 1rem;
+    overflow-x: hidden;
   }
 }
 
-@media (max-width: 768px) {
+/* Tablets pequeños - mantener 3 cartas por fila (LANDSCAPE) */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   .cards-container {
     padding: 1rem;
   }
@@ -333,12 +453,14 @@
   }
 
   .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .card-result {
     min-height: 250px;
+    max-width: 180px;
   }
 
   .card-result strong {
@@ -350,9 +472,21 @@
   }
 }
 
+/* Asegurar que dispositivos móviles muestren UNA SOLA CARTA por fila */
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+  }
+}
+
+/* Celulares - 1 carta por fila (SOLO UNA CARTA) */
 @media (max-width: 600px) {
   .cards-container, .cards-results {
     padding: 0.5rem;
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .cards-container h1 {
@@ -363,6 +497,7 @@
   .filter-form {
     padding: 1rem;
     margin-bottom: 1rem;
+    box-sizing: border-box;
   }
 
   .filter-section h2 {
@@ -397,6 +532,7 @@
   .form-group select {
     padding: 0.5rem;
     font-size: 0.85rem;
+    box-sizing: border-box;
   }
 
   .search-button {
@@ -405,12 +541,20 @@
   }
 
   .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
   }
 
   .card-result {
     min-height: 220px;
+    max-width: calc(100% - 1rem);
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   .card-result strong {
@@ -424,6 +568,7 @@
   .cards-results {
     padding: 0.5rem;
     min-height: 400px;
+    overflow-x: hidden;
   }
 
   .card-modal {
@@ -450,6 +595,7 @@
   }
 }
 
+/* Celulares pequeños - 1 carta por fila */
 @media (max-width: 480px) {
   .cards-container {
     padding: 0.25rem;
@@ -501,12 +647,16 @@
   }
 
   .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem;
+    padding: 0.8rem 0.25rem;
+    display: grid;
   }
 
   .card-result {
     min-height: 200px;
+    max-width: 260px;
+    margin: 0 auto;
   }
 
   .card-result strong {
@@ -551,9 +701,13 @@
   }
 }
 
+/* Celulares muy pequeños - 1 carta por fila (iPhone SE y similares) */
 @media (max-width: 360px) {
-  .cards-container {
-    padding: 0.15rem;
+  .cards-container, .cards-results {
+    padding: 0.25rem;
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .cards-container h1 {
@@ -562,6 +716,8 @@
 
   .filter-form {
     padding: 0.5rem;
+    margin: 0.25rem;
+    box-sizing: border-box;
   }
 
   .filter-section h2 {
@@ -582,26 +738,37 @@
   .form-group select {
     padding: 0.35rem;
     font-size: 0.75rem;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   .search-button {
     padding: 0.5rem;
     font-size: 0.85rem;
+    box-sizing: border-box;
   }
 
   .cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 0.4rem;
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem;
+    padding: 0.5rem 0.25rem;
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
   }
 
   .card-result {
     min-height: 180px;
+    max-width: calc(100% - 0.5rem);
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .card-modal {
     width: 99%;
     margin: 0.25rem;
     padding: 0.5rem;
+    box-sizing: border-box;
   }
 
   .modal-card-name {
@@ -614,6 +781,55 @@
 
   .modal-detail-item {
     font-size: 0.75rem;
+  }
+}
+
+/* Para iPhone SE y dispositivos muy pequeños */
+@media (max-width: 320px) {
+  .cards-container, .cards-results {
+    padding: 0.15rem;
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-form {
+    padding: 0.35rem;
+    margin: 0.15rem;
+    box-sizing: border-box;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.4rem;
+    padding: 0.35rem 0.15rem;
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
+  }
+
+  .card-result {
+    min-height: 160px;
+    max-width: calc(100% - 0.3rem);
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .card-result img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.25rem;
+    font-size: 0.7rem;
+    box-sizing: border-box;
+  }
+
+  .search-button {
+    padding: 0.4rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -779,19 +995,7 @@
   color: var(--select-text) !important;
 }
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem;
-  box-sizing: border-box;
-  min-width: 900px;
-  justify-content: center;
-  justify-items: center;
-}
+
 
 @keyframes cardFadeIn {
   from {
@@ -815,46 +1019,6 @@
     filter: blur(12px);
     transform: scale(0.85);
   }
-}
-
-.card-result {
-  background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px var(--shadow-color);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: opacity 0.4s, transform 0.3s, box-shadow 0.3s;
-  min-width: 0;
-  width: 100%;
-  max-width: 220px;
-  margin: 0 auto;
-  opacity: 1;
-  transform: scale(1);
-}
-
-.card-result:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 6px 16px var(--shadow-color);
-}
-
-.card-result img {
-  width: 100%;
-  max-width: 180px;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-
-.card-result strong {
-  color: var(--text-color);
-  font-size: 1.1rem;
-  margin-bottom: 0.25rem;
-}
-
-.card-result div {
-  text-align: center;
-  word-break: break-word;
 }
 
 .card-fade-in {
