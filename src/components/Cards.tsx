@@ -762,7 +762,7 @@ const Cards: React.FC = () => {
             <p>Los resultados de las cartas aparecerán aquí...</p>
           )}
           {!isLoadingCards && !errorCards && cardResults.length > 0 && (
-            <div className="cards-grid" style={{minWidth: '100%'}}>
+            <div className="cards-grid" >
               {paginatedCards.map(card => (
                 <div
                   key={card.id}

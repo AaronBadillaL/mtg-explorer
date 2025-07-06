@@ -214,7 +214,7 @@
   font-size: 1.3rem;
 }
 
-.cards-grid {
+.deck-cards-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -296,7 +296,7 @@
     max-height: 60vh;
   }
   
-  .cards-grid {
+  .deck-cards-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 0.5rem;
   }
